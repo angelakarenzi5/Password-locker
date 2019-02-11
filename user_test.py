@@ -1,15 +1,18 @@
 import unittest # Importing the unittest module from unit import Unit #Importing the unit class
 from user import User # Importing the contact class
-
 class TestUnit(unittest.TestCase):
     '''
     Args:
     unittest.TestCase:TestCase class that helps in creating test cases
     '''
-
+    def setUp(self):
+        '''
+        Set up method to run before each test cases.
+        '''
+        self.new_User=User("Angela","Karenzi","0787889107","Angelakarenzi5@gmail.com")
     # Items up here ......
 
-     def test_init(self):
+    def test_init(self):
         '''
         test_init test case to test if the object is initialized properly
         '''
