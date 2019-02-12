@@ -26,5 +26,20 @@ class Credentials:
         '''
         delete Credentials method deletes a saved Credentials from the Credentials_list
         '''
-
         Credentials.Credentials_list.remove(self)
+    @classmethod
+    def find_by_name(cls,name):
+        '''
+        Method that takes in a name and returns a Credentials that matches that name.
+
+        Args:
+            name: Phone name to search for
+        Returns :
+            Credentials of person that matches the name.
+        '''
+
+        for Credentials in cls.Credentials_list:
+            if Credentials.website_name == name:
+                return Credentials
+
+       

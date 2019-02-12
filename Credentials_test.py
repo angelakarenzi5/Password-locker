@@ -10,16 +10,16 @@ class TestUnit(unittest.TestCase):
         '''
         Set up method to run before each test cases.
         '''
-        self.new_Credentials=Credentials("angelakarenzi5@gmail.com","angelakarenzi5","0787889107")
+        self.new_Credentials=Credentials("instagram","angelakarenzi5","password")
 
     def test_init(self):
         '''
         test_init test case to test if the object is initialized properly
         '''
 
-        self.assertEqual(self.new_Credentials.website_name,"angelakarenzi5@gmail.com")
+        self.assertEqual(self.new_Credentials.website_name,"instagram")
         self.assertEqual(self.new_Credentials.user_name,"angelakarenzi5")
-        self.assertEqual(self.new_Credentials.password,"0787889107")
+        self.assertEqual(self.new_Credentials.password,"password")
     
 
     def test_save_Credentials(self):
@@ -38,7 +38,7 @@ class TestUnit(unittest.TestCase):
         objects to our Credentials_list
         '''
         self.new_Credentials.save_Credentials()
-        test_Credentials = Credentials("angelakarenzi5@gmail.com","angelakarenzi5","0787889107") # new Credentials
+        test_Credentials = Credentials("instagram","angelakarenzi5","password") # new Credentials
         test_Credentials.save_Credentials()
         self.assertEqual(len(Credentials.Credentials_list),3)
 
@@ -57,7 +57,7 @@ class TestUnit(unittest.TestCase):
             objects to our Credentials_list
             '''
             self.new_Credentials.save_Credentials()
-            test_Credentials = Credentials("angelakarenzi5@gmail.com","angelakarenzi5","0787889107") # new credentials
+            test_Credentials = Credentials("instagram","angelakarenzi5","password") # new credentials
             test_Credentials.save_Credentials()
             self.assertEqual(len(Credentials.Credentials_list),2)
 
@@ -67,24 +67,26 @@ class TestUnit(unittest.TestCase):
             test_delete_Credentials to test if we can remove a credentials from our credentials list
             '''
             self.new_Credentials.save_Credentials()
-            test_Credentials = Credentials("angelakarenzi5@gmail.com","angelakarenzi5","0787889107") # new Credentials
+            test_Credentials = Credentials("instagram","angelakarenzi5","password") # new Credentials
             test_Credentials.save_Credentials()
 
             self.new_Credentials.delete_Credentials()# Deleting a Credentials object
             self.assertEqual(len(Credentials.Credentials_list),1)
 
-            def test_find_contact_by_number(self):
+    def test_find_credentials_by_name(self):
         '''
-        test to check if we can find a contact by phone number and display information
+        test to check if we can find a Credentials by phone name and display information
         '''
 
-        self.new_contact.save_contact()
-        test_contact = Contact("Test","user","0711223344","test@user.com") # new contact
-        test_contact.save_contact()
+        self.new_Credentials.save_Credentials()
+        self.new_Credentials.save_Credentials()
+        test_Credentials = Credentials("instagram","angelakarenzi5","password") # new Credentials
+        test_Credentials.save_Credentials()
 
-        found_contact = Contact.find_by_number("0711223344")
+        found_Credentials = Credentials.find_by_name("instagram")
 
-        self.assertEqual(found_contact.email,test_contact.email)
+        self.assertEqual(found_Credentials.user_name,test_Credentials.user_name)
+
 
     
 if __name__ ==  '__main__':
