@@ -33,7 +33,7 @@ class Credentials:
         Method that takes in a name and returns a Credentials that matches that name.
 
         Args:
-            name: Phone name to search for
+            name: User name to search for
         Returns :
             Credentials of person that matches the name.
         '''
@@ -41,6 +41,23 @@ class Credentials:
         for Credentials in cls.Credentials_list:
             if Credentials.website_name == name:
                 return Credentials
+
+
+    @classmethod
+    def Credentials_exist(cls,website_name):
+        '''
+        Method that checks if a Credentials exists from the Credentials list.
+        Args:
+            name: website name to search if it exists
+        Returns :
+            Boolean: True or false depending if the Credentials exists
+        '''
+        for Credentials in cls.Credentials_list:
+            if Credentials.website_name == website_name:
+                    return True
+
+        return False
+
 
     @classmethod
     def display_Credentials(cls):

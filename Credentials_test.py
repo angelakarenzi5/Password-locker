@@ -69,16 +69,15 @@ class TestUnit(unittest.TestCase):
             self.new_Credentials.save_Credentials()
             test_Credentials = Credentials("instagram","angelakarenzi5","password") # new Credentials
             test_Credentials.save_Credentials()
-chmod +x run.py
-            self.new_Credentials.dechmod +x run.pylete_Credentials()# Deleting a Credentials object
-            self.assertEqual(len(Crchmod +x run.pyedentials.Credentials_list),1)
-chmod +x run.py
-    def test_find_credentials_by_nachmod +x run.pyme(self):
-        '''chmod +x run.py
-        test to check if we can finchmod +x run.pyd a Credentials by phone name and display information
+
+            self.new_Credentials.delete_Credentials()# Deleting a Credentials object
+            self.assertEqual(len(Credentials.Credentials_list),1)
+
+    def test_find_credentials_by_name(self):
+        '''
+        test to check if we can find a Credentials by phone name and display information
         '''
 
-        self.new_Credentials.save_Credentials()
         self.new_Credentials.save_Credentials()
         test_Credentials = Credentials("instagram","angelakarenzi5","password") # new Credentials
         test_Credentials.save_Credentials()
@@ -94,7 +93,19 @@ chmod +x run.py
 
         self.assertEqual(Credentials.display_Credentials(),Credentials.Credentials_list)
 
+    def test_Credentials_exists(self):
+        '''
+        test to check if we can return a Boolean  if we cannot find the Credentials.
+        '''
 
+        self.new_Credentials.save_Credentials()
+        test_Credentials = Credentials("instagram","angelakarenzi5","password") # new Credentials
+        test_Credentials.save_Credentials()
+
+        Credentials_exists = Credentials.Credentials_exist("instagram")
+
+        self.assertTrue(Credentials_exists)
+        
     
 if __name__ ==  '__main__':
     unittest.main()
