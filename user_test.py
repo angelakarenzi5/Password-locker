@@ -38,7 +38,7 @@ class TestUnit(unittest.TestCase):
         objects to our user_list
         '''
         self.new_User.save_user()
-        test_user = User("Angela","Karenzi","0787889107","angelakarenzi5@gmail.com") # new contact
+        test_user = User("Angela","Karenzi","0787889107","angelakarenzi5@gmail.com") # new user
         test_user.save_user()
         self.assertEqual(len(User.user_list),3)
 
@@ -57,10 +57,21 @@ class TestUnit(unittest.TestCase):
             objects to our user_list
             '''
             self.new_User.save_user()
-            test_user = User("Angela","Karenzi","0787889107","angelakarenzi5@gmail.com") # new contact
+            test_user = User("Angela","Karenzi","0787889107","angelakarenzi5@gmail.com") # new user
             test_user.save_user()
             self.assertEqual(len(User.user_list),2)
+    def test_user_exists(self):
+        '''
+        test to check if we can return a Boolean  if we cannot find the user.
+        '''
 
+        self.new_User.save_user()
+        test_user = User("Angela","Karenzi","0787889107","angelakarenzi5@gmail.com") # new user
+        test_user.save_user()
+
+        User_exists = User.user_exist("0787889107")
+
+        self.assertTrue(User_exists)
         
     
 if __name__ ==  '__main__':
