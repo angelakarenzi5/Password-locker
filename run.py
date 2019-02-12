@@ -2,12 +2,19 @@
 from user import User
 from Credentials import Credentials
 
-def create_user(fname,lname,phone,email):
+def create_user(fname,lname,email,phone,password):
     '''
     Function to create a new user
     '''
-    new_user = User(fname,lname,phone,email)
+    new_user = User(fname,lname,email,phone,password)
     return new_user
+
+def create_Credentials(website_name,user_name,password):
+    '''
+    Function to create a new Credentials
+    '''
+    new_Credentials = Credentials(website_name,user_name,password)
+    return new_Credentials
 
 def save_user(user):
     '''
@@ -39,13 +46,20 @@ def check_existing_users(number):
     '''
     return Contact.contact_exist(number)
 
+def check_existing_Credentials(website_name):
+    '''
+    Function that check if a user exists with that number and return a Boolean
+    '''
+    return Credentials.Credentials_exist(website_name)
+
+
 def display_Credentials():
     '''
     Function that returns all the saved Credentials
     '''
     return Credentials.display_Credentials()
 
-    def main():
+def main():
          print("Hello Welcome to your user list. What is your name?")
          user_name = input()
 
@@ -53,7 +67,7 @@ def display_Credentials():
          print('\n')
 
          while True:
-                    print("Use these short codes : cc - create a new user, dc - display users, fc -find a user, ex -exit the user list ")
+                    print("Use these short codes : cc - create a new user, dc - display users, fc -find a user, ex -exit the user list, cd - Create credentials, fcc - find credentials ")
 
                     short_code = input().lower()
 
@@ -67,21 +81,47 @@ def display_Credentials():
                             print("Last name ...")
                             l_name = input()
 
-                            print("Phone number ...")
-                            p_number = input()
-
                             print("Email address ...")
                             e_address = input()
 
+                            print("Phone number ...")
+                            p_number = input()
 
-                            save_users(create_user(f_name,l_name,p_number,e_address)) # create and save new user.
+                            print("Password ...")
+                            password = input ()                            
+
+
+                            save_user(create_user(f_name,l_name,e_address,p_number,password)) # create and save new user.
                             print ('\n')
                             print(f"New User {f_name} {l_name} created")
                             print ('\n')
 
+
+
+                    # elif short_code == 'login':
+                    #     print("Enter username and password")
+                    #     username=input()
+                    #     password=input()
+                    #     if username==f_name and password== password:
+                    #         print("login successful")
+                    #         short_code1=input()
+                    elif short_code=='cd':
+                                print("Enter website name")
+                                website=input()
+                                print("Enter username")
+                                usern=input()
+
+                                print("Enter password")
+                                passw=input()
+                                save_Credentials(create_Credentials(website,usern,passw))
+
+
+
+
+                       
                     elif short_code == 'dc':
 
-                            if display_Credentials():
+                                 if display_Credentials():
                                     print("Here is a list of all your Credentials")
                                     print('\n')
 
@@ -89,7 +129,7 @@ def display_Credentials():
                                             print(f"{Credentials.website_name} {Credentials.user_name} .....{Credentials.password}")
 
                                     print('\n')
-                            else:
+                                 else:
                                     print('\n')
                                     print("You dont seem to have any Credentials saved yet")
                                     print('\n')
@@ -109,8 +149,28 @@ def display_Credentials():
                             else:
                                     print("That user does not exist")
 
+                    elif short_code == 'fcc':
+
+                            print("Enter the website name you want to search for")
+
+                            search_website_name = input()
+                            if check_existing_Credentials(search_website_name):
+                                    search_Credentials = find_Credentials(search_website_name)
+                                    print(f"{search_Credentials.website_name} {search_Credentials.website_name}")
+                                    print('-' * 20)
+
+                                    print(f"website_name.......{search_Credentials.website_name}")
+                                    print(f"password.......{search_Credentials.password}")
+                            else:
+                                    print("That Credentials does not exist")
+
+
                     elif short_code == "ex":
                             print("Bye .......")
                             break
                     else:
                             print("I really didn't get that. Please use the short codes")
+                    
+
+if __name__ == '__main__':
+     main()
