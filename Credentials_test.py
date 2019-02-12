@@ -87,6 +87,13 @@ class TestUnit(unittest.TestCase):
 
         self.assertEqual(found_Credentials.user_name,test_Credentials.user_name)
 
+    def test_display_all_Credentials(self):
+        '''
+        method that returns a list of all Credentials saved
+        '''
+
+        self.assertEqual(Credentials.display_Credentials(),Credentials.Credentials_list)
+
 
     
 if __name__ ==  '__main__':

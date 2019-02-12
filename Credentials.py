@@ -42,4 +42,10 @@ class Credentials:
             if Credentials.website_name == name:
                 return Credentials
 
+    @classmethod
+    def display_Credentials(cls):
+        '''
+        method that returns the Credentials list
+        '''
+        return cls.Credentials_list
        
