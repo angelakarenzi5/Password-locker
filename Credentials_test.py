@@ -105,6 +105,8 @@ class TestUnit(unittest.TestCase):
         Credentials_exists = Credentials.Credentials_exist("instagram")
 
         self.assertTrue(Credentials_exists)
+
+    
         
     
 if __name__ ==  '__main__':
